@@ -6,7 +6,7 @@ import { Separator } from "@/components/ui/separator"
 export const Sidebar = () => {
     return(
         <Sheet>
-            <SheetTrigger>
+            <SheetTrigger asChild>
                 <Button>
                     <MenuIcon/>
                 </Button>
