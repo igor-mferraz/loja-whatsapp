@@ -5,8 +5,11 @@ import { MenuIcon } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { useCartStore } from "@/stores/cart-store"
 import { CartItem } from "./item"
+import { useState } from "react"
+import { ChecOutDialog } from "../checkout/dialog"
 
 export const Sidebar = () => {
+    const [checkOutOpen, setCheckOutOpen] = useState(false);
     const { cart } = useCartStore(state => state);
 
     let subtotal = 0;
@@ -46,12 +49,17 @@ export const Sidebar = () => {
                 <Separator className="my-4"/>
                 <div className="text-center">
                     <Button
+                        onClick={()=>setCheckOutOpen(true)}
                         disabled={cart.length === 0}
                         >
                             Finalizar Compra
                     </Button>
                 </div>
 
+                <ChecOutDialog
+                    open={checkOutOpen}
+                    onOpenChange={setCheckOutOpen}
+                />
             </SheetContent>
         </Sheet>
     )
